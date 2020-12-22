@@ -4,15 +4,11 @@ import com.astrojardin.ruby.RubyItem;
 import com.astrojardin.ruby.armor.BaseArmor;
 import com.astrojardin.ruby.armor.RubyArmorMaterial;
 import com.astrojardin.ruby.block.RubyBlock;
-import com.astrojardin.ruby.tools.PickaxeBase;
-import com.astrojardin.ruby.tools.ToolMaterialRuby;
+import com.astrojardin.ruby.tools.*;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.item.ArmorMaterial;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
+import net.minecraft.item.*;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -32,6 +28,10 @@ public class RegisterItems {
     Registry.register(Registry.ITEM, new Identifier(MODID, "ruby_block"), new BlockItem(RUBY_BLOCK, new Item.Settings().group(ItemGroup.MATERIALS)));
 
     Registry.register(Registry.ITEM, new Identifier(MODID, "ruby_pickaxe"), new PickaxeBase(new ToolMaterialRuby()));
+    Registry.register(Registry.ITEM, new Identifier(MODID, "ruby_axe"), new AxeBase(new ToolMaterialRuby()));
+    Registry.register(Registry.ITEM, new Identifier(MODID, "ruby_shovel"), new ShovelBase(new ToolMaterialRuby()));
+    Registry.register(Registry.ITEM, new Identifier(MODID, "ruby_hoe"), new HoeBase(new ToolMaterialRuby()));
+
 
 
 
