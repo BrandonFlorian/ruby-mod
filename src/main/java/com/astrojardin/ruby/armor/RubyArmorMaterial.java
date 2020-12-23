@@ -1,5 +1,6 @@
 package com.astrojardin.ruby.armor;
 
+import com.astrojardin.ruby.registry.RegisterItems;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.Items;
@@ -23,7 +24,7 @@ public class RubyArmorMaterial implements ArmorMaterial {
 
     @Override
     public int getEnchantability() {
-        return 20;
+        return 30;
     }
 
     @Override
@@ -33,7 +34,7 @@ public class RubyArmorMaterial implements ArmorMaterial {
 
     @Override
     public Ingredient getRepairIngredient() {
-        return Ingredient.ofItems(Items.DIAMOND);
+        return Ingredient.ofItems(RegisterItems.RUBY_ITEM);
     }
 
     @Override
