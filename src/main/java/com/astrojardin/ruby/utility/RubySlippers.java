@@ -27,10 +27,6 @@ import java.util.Optional;
 
 public class RubySlippers extends Item {
 
-    public static int x = 0;
-    public static int y = 0;
-    public static int z = 0;
-
     public RubySlippers(Settings settings) {
         super(settings);
     }
