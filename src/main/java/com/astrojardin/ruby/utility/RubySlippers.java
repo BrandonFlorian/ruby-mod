@@ -35,19 +35,23 @@ public class RubySlippers extends Item {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand) {
         try {
-            MinecraftServer server = world.getServer();
-            String playerName = playerEntity.getName().asString();
-            PlayerManager playerManager = server.getPlayerManager();
-            ServerPlayerEntity serverPlayer = playerManager.getPlayer(playerName);
-            BlockPos pos = serverPlayer.getSpawnPointPosition();
-            playerEntity.playSound(SoundEvents.ENTITY_ENDERMAN_TELEPORT, 1.0F, 1.0F);
-            if(pos != null){
-                double x = pos.getX();
-                double y = pos.getY();
-                double z = pos.getZ();
-                serverPlayer.teleport(x, y, z);
-                //playerEntity.teleport(x, y, z);
+            if(playerEntity.experienceLevel > 1){
+                MinecraftServer server = world.getServer();
+                String playerName = playerEntity.getName().asString();
+                PlayerManager playerManager = server.getPlayerManager();
+                ServerPlayerEntity serverPlayer = playerManager.getPlayer(playerName);
+                BlockPos pos = serverPlayer.getSpawnPointPosition();
+                playerEntity.playSound(SoundEvents.ENTITY_ENDERMAN_TELEPORT, 1.0F, 1.0F);
+                if(pos != null){
+                    double x = pos.getX();
+                    double y = pos.getY();
+                    double z = pos.getZ();
+                    serverPlayer.teleport(x, y, z);
+                    //playerEntity.teleport(x, y, z);
+                }
+                serverPlayer.experienceLevel -= 1;
             }
+
 
             return TypedActionResult.success(playerEntity.getStackInHand(hand));
         }
