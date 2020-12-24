@@ -11,7 +11,7 @@
     }
   },
   "result": {
-    "block": "ruby:ruby_block",
+    "item": "ruby:ruby_block",
     "count": 1
   }
 }
