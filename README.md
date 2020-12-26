@@ -8,5 +8,8 @@ Full tool set
 
 Full Armor set
 
+Ruby Slippers that will take you to your bed at the cost of 1 level of XP
+
+
 
 Currently no sword :( will add soon
