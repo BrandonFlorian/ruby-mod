@@ -18,6 +18,7 @@ import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.BlockPos;
@@ -36,12 +37,13 @@ public class RubySlippers extends Item {
     public TypedActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand) {
         try {
             if(playerEntity.experienceLevel > 1){
+                playerEntity.playSound(SoundEvents.ENTITY_ENDERMAN_TELEPORT, 1.0F, 1.0F);
                 MinecraftServer server = world.getServer();
                 String playerName = playerEntity.getName().asString();
                 PlayerManager playerManager = server.getPlayerManager();
                 ServerPlayerEntity serverPlayer = playerManager.getPlayer(playerName);
                 BlockPos pos = serverPlayer.getSpawnPointPosition();
-                playerEntity.playSound(SoundEvents.ENTITY_ENDERMAN_TELEPORT, 1.0F, 1.0F);
+
                 if(pos != null){
                     double x = pos.getX();
                     double y = pos.getY();
@@ -49,10 +51,15 @@ public class RubySlippers extends Item {
                     serverPlayer.teleport(x, y, z);
                     //playerEntity.teleport(x, y, z);
                 }
-                serverPlayer.experienceLevel -= 1;
+                serverPlayer.addExperienceLevels(-1);
+                //playerEntity.addExperienceLevels(-1);
+                playerEntity.sendMessage(Text.of("There's no place like home..."), false);
+
+
             }
-
-
+            else{
+                playerEntity.sendMessage(Text.of("Requires 1 level to use"), false);
+            }
             return TypedActionResult.success(playerEntity.getStackInHand(hand));
         }
         catch(Exception e){

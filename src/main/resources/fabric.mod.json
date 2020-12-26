@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "tutorial",
+  "id": "ruby",
   "version": "${version}",
 
   "name": "Ruby Mod",

@@ -2,12 +2,15 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "   ",
-    "   ",
+    "/ /",
     "# #"
   ],
   "key": {
     "#": {
       "item": "ruby:ruby_item"
+    },
+    "/": {
+      "item": "minecraft:ender_pearl"
     }
   },
   "result": {
