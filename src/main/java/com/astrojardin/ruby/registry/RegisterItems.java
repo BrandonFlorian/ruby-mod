@@ -10,14 +10,10 @@ import com.astrojardin.ruby.tools.*;
 import com.astrojardin.ruby.utility.RubySlippers;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
-import net.fabricmc.fabric.api.loot.v1.FabricLootPoolBuilder;
-import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback;
 import net.minecraft.block.Block;
 import net.minecraft.block.OreBlock;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
-import net.minecraft.loot.ConstantLootTableRange;
-import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
@@ -45,13 +41,13 @@ public class RegisterItems {
             .configure(new OreFeatureConfig(
                     OreFeatureConfig.Rules.BASE_STONE_OVERWORLD,
                     RUBY_ORE.getDefaultState(),
-                    9)) // vein size
+                    3)) // vein size
             .decorate(Decorator.RANGE.configure(new RangeDecoratorConfig(
                     0, // bottom offset
                     0, // min y level
-                    64))) // max y level
+                    30))) // max y level
             .spreadHorizontally()
-            .repeat(20); // number of veins per chunk
+            .repeat(1); // number of veins per chunk
 
     public static void register() {
         Registry.register(Registry.ITEM, new Identifier(MODID, "ruby_item"), RUBY_ITEM);
@@ -63,6 +59,7 @@ public class RegisterItems {
         Registry.register(Registry.ITEM, new Identifier(MODID, "ruby_axe"), new AxeBase(new ToolMaterialRuby()));
         Registry.register(Registry.ITEM, new Identifier(MODID, "ruby_shovel"), new ShovelBase(new ToolMaterialRuby()));
         Registry.register(Registry.ITEM, new Identifier(MODID, "ruby_hoe"), new HoeBase(new ToolMaterialRuby()));
+        Registry.register(Registry.ITEM, new Identifier(MODID, "ruby_sword"), new SwordBase(new ToolMaterialRuby()));
 
         Registry.register(Registry.ITEM, new Identifier(MODID, "ruby_helmet"), new BaseArmor(RUBY_ARMOR, EquipmentSlot.HEAD));
         Registry.register(Registry.ITEM, new Identifier(MODID, "ruby_chestplate"), new BaseArmor(RUBY_ARMOR, EquipmentSlot.CHEST));
@@ -76,16 +73,6 @@ public class RegisterItems {
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, oreRubyOverworld.getValue(), RUBY_ORE_OVERWORLD);
         BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES, oreRubyOverworld);
 
-
-//        LootTableLoadingCallback.EVENT.register((resourceManager, lootManager, id, supplier, setter) -> {
-//            if (RUBY_ORE.equals(id)) {
-//                FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
-//                        .rolls(ConstantLootTableRange.create(1))
-//                        .withEntry(ItemEntry.builder(RUBY_ORE).build());
-//
-//                supplier.withPool(poolBuilder.build());
-//            }
-//        });
 
     }
 }

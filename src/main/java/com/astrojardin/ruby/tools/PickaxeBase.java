@@ -7,6 +7,6 @@ import net.minecraft.item.ToolMaterial;
 
 public class PickaxeBase extends PickaxeItem {
     public PickaxeBase(ToolMaterial material) {
-        super(material, -1, -2.2f, new Item.Settings().group(ItemGroup.TOOLS));
+        super(material, 3, -2.2f, new Item.Settings().group(ItemGroup.TOOLS));
     }
 }
